@@ -1,5 +1,7 @@
 package org.eclipse.microprofile12.jwtauth.jaxrs;
 
+import org.eclipse.microprofile.jwt.JsonWebToken;
+
 import static javax.ws.rs.core.MediaType.TEXT_PLAIN;
 
 import java.security.Principal;
@@ -16,8 +18,11 @@ import javax.ws.rs.Produces;
 @Produces(TEXT_PLAIN)
 public class Resource {
     
+    //@Inject
+    //private Principal principal;
+
     @Inject
-    private Principal principal;
+    JsonWebToken callerPrincipal;
     
     @GET
     @Path("/protected")
@@ -25,7 +30,8 @@ public class Resource {
     public String protectedResource() {
         return
             "This is a protected resource \n" +
-            "web username: " + principal.getName() + "\n";
+            //"web username: " + principal.getName() + "\n";
+                    "web username: " + callerPrincipal.getName() + "\n";
     }
     
     @GET
@@ -33,7 +39,8 @@ public class Resource {
     public String publicResource() {
         return
             "This is a public resource \n" +
-            "web username: " + principal.getName() + "\n";
+            //"web username: " + principal.getName() + "\n";
+                    "web username: " + callerPrincipal.getName() + "\n";
     }
 
 }

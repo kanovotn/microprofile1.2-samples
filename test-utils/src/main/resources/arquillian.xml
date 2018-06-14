@@ -15,6 +15,12 @@
         <configuration>
             <property name="deployType">xml</property>
             <property name="wlpHome">${arquillian.liberty.wlpHome}</property>
+            <!--<property name="httpPort">9080</property>-->
+            <!--property name="hostName">localhost</property>
+            <property name="username">admin</property>
+            <property name="password">admin</property>
+            <property name="httpPort">9080</property>
+            <property name="httpsPort">9443</property>-->
         </configuration>
     </container>
     

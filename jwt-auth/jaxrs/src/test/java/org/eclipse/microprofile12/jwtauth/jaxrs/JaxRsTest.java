@@ -101,6 +101,7 @@ public class JaxRsTest {
                      .get();
 
         // Public resource, no log-in needed
+        System.out.println("MINE" + response.getStatus());
         assertTrue(
             "Public resource is not constrained (protected) so should be accessible without sending the JWT token",
             response.readEntity(String.class).contains("This is a public resource")

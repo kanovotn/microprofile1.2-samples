@@ -21,6 +21,7 @@
 		<java.min.version>1.8</java.min.version>
 		<maven.min.version>3.5</maven.min.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<session.executionRootDirectory>${maven.multiModuleProjectDirectory}</session.executionRootDirectory>
 
 		<maven.test.skip>false</maven.test.skip>
 		<skipTests>false</skipTests>
@@ -624,6 +625,38 @@
 				</plugins>
 			</build>
 		</profile>
+
+        <profile>
+            <id>liberty-remote</id>
+
+            <dependencies>
+                <dependency>
+                    <groupId>fish.payara.arquillian</groupId>
+                    <artifactId>payara-client-ee7</artifactId>
+                </dependency>
+
+                <!-- The actual Arquillian connector -->
+                <dependency>
+                    <groupId>org.jboss.arquillian.container</groupId>
+                    <artifactId>arquillian-wlp-remote-8.5</artifactId>
+                    <version>1.0.0.CR1</version>
+                    <scope>test</scope>
+                </dependency>
+            </dependencies>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-surefire-plugin</artifactId>
+                        <configuration>
+                            <systemPropertyVariables>
+								<arquillian.launch>liberty-ci-managed</arquillian.launch>
+								<arquillian.liberty.wlpHome>${session.executionRootDirectory}/target/wlp</arquillian.liberty.wlpHome>
+                            </systemPropertyVariables>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
 
 
 

@@ -4,6 +4,9 @@ swarm:
   bind:
     address: localhost
   microprofile:
+    jwt:
+      default-missing-method-permissions-deny-access:
+        false
     jwtauth:
       token:
         issuedBy: "org.eclipse.microprofile12"
