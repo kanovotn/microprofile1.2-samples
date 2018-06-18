@@ -1,6 +1,7 @@
 package org.eclipse.microprofile12.jwtauth.jaxrs;
 
 import org.eclipse.microprofile.jwt.JsonWebToken;
+import org.eclipse.microprofile.openapi.annotations.Operation;
 
 import static javax.ws.rs.core.MediaType.TEXT_PLAIN;
 
@@ -21,26 +22,30 @@ public class Resource {
     //@Inject
     //private Principal principal;
 
-    @Inject
-    JsonWebToken callerPrincipal;
+   /* @Inject
+    JsonWebToken callerPrincipal;*/
     
     @GET
     @Path("/protected")
     @RolesAllowed("architect")
     public String protectedResource() {
-        return
+        /*return
             "This is a protected resource \n" +
             //"web username: " + principal.getName() + "\n";
-                    "web username: " + callerPrincipal.getName() + "\n";
+                 //   "web username: " + callerPrincipal.getName() + "\n";*/
+        return "";
     }
     
     @GET
     @Path("public")
+    @Operation(summary = "Finds Pets by status",
+            description = "Multiple status values can be provided with comma separated strings")
     public String publicResource() {
-        return
+        /*return
             "This is a public resource \n" +
             //"web username: " + principal.getName() + "\n";
-                    "web username: " + callerPrincipal.getName() + "\n";
+                    "web username: " + callerPrincipal.getName() + "\n";*/
+        return "";
     }
 
 }

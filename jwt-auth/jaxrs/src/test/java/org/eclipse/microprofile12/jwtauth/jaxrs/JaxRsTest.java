@@ -67,7 +67,7 @@ public class JaxRsTest {
         
     }
     
-    @Test
+   // @Test
     @RunAsClient
     public void testProtectedResourceNotLoggedin() throws IOException {
         
@@ -89,7 +89,7 @@ public class JaxRsTest {
         );
     }
     
-    @Test
+   // @Test
     @RunAsClient
     public void testPublicResourceNotLoggedin() throws IOException {
 
@@ -108,7 +108,7 @@ public class JaxRsTest {
         );
     }
     
-    @Test
+    //@Test
     @RunAsClient
     public void testProtectedResourceLoggedin() throws Exception {
 
@@ -150,6 +150,25 @@ public class JaxRsTest {
             response.contains("web username: test")
         );
 
+    }
+
+    @Test
+    @RunAsClient
+    public void testOpenApi() throws Exception {
+        //System.out.println(URI.create(new URL(base, "openapi").toExternalForm()));
+        //Thread.sleep(36000);
+
+        String response =
+                newClient()
+                        .target(
+                                URI.create(new URL(base, "/openapi").toExternalForm()))
+                        .request(TEXT_PLAIN)
+                        .header(AUTHORIZATION, "Bearer " + generateJWTString("jwt-token.json"))
+                        .get(String.class);
+
+        System.out.println("-------------------------------------------------------------------------");
+        System.out.println("Response: " + response);
+        System.out.println("-------------------------------------------------------------------------");
     }
 
 }
